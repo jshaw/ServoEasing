@@ -657,11 +657,6 @@ void setEaseToForAllServosSynchronizeAndStartInterrupt();
 void setEaseToForAllServosSynchronizeAndStartInterrupt(uint_fast16_t aDegreesPerSecond);
 void synchronizeAndEaseToArrayPositions();
 void synchronizeAndEaseToArrayPositions(uint_fast16_t aDegreesPerSecond);
-
-void printArrayPositions(Print *aSerial);
-bool isOneServoMoving();
-void stopAllServos();
-bool updateAllServos();
 void synchronizeAllServosAndStartInterrupt(bool aStartUpdateByInterrupt = START_UPDATE_BY_INTERRUPT);
 
 #if !defined(PROVIDE_ONLY_LINEAR_MOVEMENT)
@@ -673,6 +668,11 @@ void setEasingTypeForMultipleServos(uint_fast8_t aNumberOfServos, uint_fast8_t a
 void updateAndWaitForAllServosToStop();
 bool delayAndUpdateAndWaitForAllServosToStop(unsigned long aMillisDelay, bool aTerminateDelayIfAllServosStopped = false);
 void synchronizeAllServosStartAndWaitForAllServosToStop();
+
+void printArrayPositions(Print *aSerial);
+bool isOneServoMoving();
+void stopAllServos();
+bool updateAllServos();
 
 void enableServoEasingInterrupt();
 #if defined(__AVR_ATmega328P__)

@@ -21,6 +21,7 @@ Available as [Arduino library "ServoEasing"](https://www.arduinolibraries.info/l
 - [List of easing functions](https://github.com/ArminJo/ServoEasing#list-of-easing-functions)
 - [API](https://github.com/ArminJo/ServoEasing#api)
 - [Usage](https://github.com/ArminJo/ServoEasing#usage)
+- [Multiple servo handling](https://github.com/ArminJo/ServoEasing#multiple-servo-handling)
 - [Comparison between Quadratic, Cubic and Sine easings.](https://github.com/ArminJo/ServoEasing#comparison-between-quadratic-cubic-and-sine-easings)
 - [Useful resources](https://github.com/ArminJo/ServoEasing#useful-resources)
 - [Resolution of servo positioning](https://github.com/ArminJo/ServoEasing#resolution-of-servo-positioning)
@@ -63,6 +64,7 @@ For instructions how to enable these alternatives, see [Compile options / macros
 - Allow to specify an arbitrary mapping between degrees and microseconds by `attach(int aPin, int aMicrosecondsForServoLowDegree, int aMicrosecondsForServoHighDegree, int aServoLowDegree, int aServoHighDegree)`.
 - **Servo speed** can be specified in **degree per second** or **milliseconds** for the complete move.
 - Degree values >= 400 is taken as microsecond values for the servo pulse.
+- **Multiple servo handling** by *ForAllServos() functions like `setDegreeForAllServos(3, 135, 135, 135)`.
 - All ServoEasing objects are accessible by using the [`ServoEasing::ServoEasingArray[]`](https://github.com/ArminJo/ServoEasing/blob/master/examples/ThreeServos/ThreeServos.ino#L104).
 
 # List of easing functions:
@@ -121,6 +123,10 @@ Just call `myServo.startEaseTo()` instead of `myServo.write()` and you are done.
 - Do not forget to **initially set the start position** for the Servo, since the library has **no knowledge about your servos initial position** and therefore starts at **0 degree** at the first move, which may be undesirable.<br/>
   Setting the start position of the servo can be done as the second parameter to `myServo.attach(int aPin, int aInitialDegree)` or by calling `myServo.write(int aDegree)`,
 - And do not forget to **initially set the moving speed** (as degrees per second) with `myServo.setSpeed()` or as **second parameter** to startEaseTo() or easeTo(). Otherwise the Servo will start with the speed of 5 degrees per second, to indicate that speed was not set.<br/>
+
+# Multiple servo handling
+You can handle multiple servos simultaneously by [special functions](https://github.com/ArminJo/ServoEasing/blob/master/src/ServoEasing.h#L641) like
+ `writeAllServos()`, `setSpeedForAllServos()`, `setDegreeForAllServos()`, `setEaseToDForAllServos()`, `synchronizeAndEaseToArrayPositions()`, `updateAndWaitForAllServosToStop()` and much more.
 
 # Comparison between Quadratic, Cubic and Sine easings.
 **Arduino Serial Plotter** result of the SymmetricEasing example.
